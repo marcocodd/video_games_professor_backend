@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import marco.video_game_professor_backend.entities.User;
 import marco.video_game_professor_backend.exceptions.UnauthorizedException;
+import marco.video_game_professor_backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
