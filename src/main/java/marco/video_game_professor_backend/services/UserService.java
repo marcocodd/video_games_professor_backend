@@ -1,5 +1,7 @@
 package marco.video_game_professor_backend.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import marco.video_game_professor_backend.entities.User;
 import marco.video_game_professor_backend.exceptions.BadRequestException;
 import marco.video_game_professor_backend.exceptions.NotFoundException;
@@ -8,11 +10,17 @@ import marco.video_game_professor_backend.repositories.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 public class UserService {
     @Autowired
     private UserDAO userDAO;
+    @Autowired
+    private Cloudinary cloudinary;
+
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -40,6 +48,22 @@ public class UserService {
                 "https://ui-avatars.com/api/?name=" + body.userName());
 
         return userDAO.save(newUser);
+    }
+
+    public User findByIdAndUpdate(long userId, User modifiedUser) {
+        User found = this.findById(userId);
+        found.setUserName(modifiedUser.getUserName());
+        found.setEmail(modifiedUser.getEmail());
+        found.setPassword(modifiedUser.getPassword());
+        found.setAvatar(modifiedUser.getAvatar());
+        return this.userDAO.save(found);
+    }
+
+    public User uploadAvatar(long userId, MultipartFile image) throws IOException {
+        User found = this.findById(userId);
+        String url = (String) cloudinary.uploader().upload(image.getBytes(), ObjectUtils.emptyMap()).get("url");
+        found.setAvatar(url);
+        return userDAO.save(found);
     }
 
 }
