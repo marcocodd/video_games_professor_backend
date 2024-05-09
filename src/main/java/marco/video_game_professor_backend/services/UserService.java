@@ -39,13 +39,13 @@ public class UserService {
                 user -> {
                     throw new BadRequestException("L'email " + body.email() + " è già in uso!");
                 });
-        this.userDAO.findByUserName(body.userName()).ifPresent(
+        this.userDAO.findByUserName(body.username()).ifPresent(
                 user -> {
-                    throw new BadRequestException("L'username " + body.userName() + " è già in uso!");
+                    throw new BadRequestException("L'username " + body.username() + " è già in uso!");
                 });
 
-        User newUser = new User(body.userName(), body.email(), passwordEncoder.encode(body.password()),
-                "https://ui-avatars.com/api/?name=" + body.userName());
+        User newUser = new User(body.username(), body.email(), passwordEncoder.encode(body.password()),
+                "https://ui-avatars.com/api/?name=" + body.username());
 
         return userDAO.save(newUser);
     }

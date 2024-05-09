@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name = "users")
 @NoArgsConstructor
 @Getter
-
 public class User {
     @Id
     @GeneratedValue
@@ -29,6 +28,9 @@ public class User {
     @Setter
     private String avatar;
     private String role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Review> review;
 
 
     public User(String userName, String email, String password, String avatar) {
