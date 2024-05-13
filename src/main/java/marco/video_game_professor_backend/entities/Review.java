@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "reviews")
 @NoArgsConstructor
@@ -17,6 +19,16 @@ public class Review {
     private String content;
     @Setter
     private int rating;
+    @Setter
+    private LocalDate date;
     @ManyToOne
     private User user;
+    
+
+    public Review(String content, int rating, LocalDate date, User user) {
+        this.content = content;
+        this.rating = rating;
+        this.date = date;
+        this.user = user;
+    }
 }

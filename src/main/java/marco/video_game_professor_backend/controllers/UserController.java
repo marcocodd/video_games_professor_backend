@@ -15,6 +15,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+    @GetMapping("/me")
+    public User getCurrentUser(@AuthenticationPrincipal User currentAuthenticatedUser) {
+        return currentAuthenticatedUser;
+    }
+
     @PutMapping("/me")
     public User updateProfile(@AuthenticationPrincipal User currentAuthenticatedUser, @RequestBody User updatedUser) {
         return this.userService.findByIdAndUpdate(currentAuthenticatedUser.getId(), updatedUser);
