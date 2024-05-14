@@ -22,7 +22,7 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/login")
-    public UserLoginRespDTO login(@RequestBody UserLoginDTO payload) {
+    public UserLoginRespDTO login(@RequestBody @Validated UserLoginDTO payload) {
         return new UserLoginRespDTO(this.authService.authenticateUserAndGenerateToken(payload));
     }
 

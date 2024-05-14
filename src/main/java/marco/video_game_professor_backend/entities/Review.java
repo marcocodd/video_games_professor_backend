@@ -23,12 +23,15 @@ public class Review {
     private LocalDate date;
     @ManyToOne
     private User user;
-    
+    @Setter
+    private long gameId;
 
-    public Review(String content, int rating, LocalDate date, User user) {
+
+    public Review(String content, int rating, LocalDate date, User user, long gameId) {
         this.content = content;
         this.rating = rating;
         this.date = date;
         this.user = user;
+        this.gameId = gameId;
     }
 }

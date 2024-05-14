@@ -41,6 +41,22 @@ public class ExceptionsHandler {
         }
     }
 
+//    @ExceptionHandler(BadRequestException.class)
+//    public ResponseEntity<Object> handleBadRequestException(BadRequestException ex) {
+//        List<ObjectError> errorsList = ex.getErrorsList();
+//        if (errorsList != null && !errorsList.isEmpty()) {
+//            List<String> errorMessages = new ArrayList<>();
+//            for (ObjectError error : errorsList) {
+//                errorMessages.add(error.getDefaultMessage());
+//            }
+//            return new ResponseEntity<>(errorMessages, HttpStatus.BAD_REQUEST);
+//        } else {
+//            ErrorsResponseDTO errorResponse = new ErrorsResponseDTO(ex.getMessage(), LocalDateTime.now());
+//            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
+
     @ExceptionHandler(InternalServerErrorException.class)
     public ResponseEntity<Object> handleInternalServerErrorException(InternalServerErrorException ex, WebRequest request) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
