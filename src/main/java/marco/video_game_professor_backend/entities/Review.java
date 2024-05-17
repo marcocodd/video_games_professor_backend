@@ -1,5 +1,6 @@
 package marco.video_game_professor_backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @Table(name = "reviews")
 @NoArgsConstructor
 @Getter
+
 public class Review {
     @Id
     @GeneratedValue
@@ -22,6 +24,7 @@ public class Review {
     @Setter
     private LocalDate date;
     @ManyToOne
+    @JsonIgnore
     private User user;
     @Setter
     private long gameId;
@@ -33,5 +36,16 @@ public class Review {
         this.date = date;
         this.user = user;
         this.gameId = gameId;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", rating=" + rating +
+                ", date=" + date +
+                ", gameId=" + gameId +
+                '}';
     }
 }

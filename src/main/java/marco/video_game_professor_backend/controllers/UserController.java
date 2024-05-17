@@ -15,10 +15,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/me")
     public User getCurrentUser(@AuthenticationPrincipal User currentAuthenticatedUser) {
-        return currentAuthenticatedUser;
+        User user = userService.findByIdWithReviews(currentAuthenticatedUser.getId());
+        return user;
     }
 
     @PutMapping("/me")
