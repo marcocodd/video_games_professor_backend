@@ -34,6 +34,7 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+
     private List<Review> review;
 
 

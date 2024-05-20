@@ -1,6 +1,7 @@
 package marco.video_game_professor_backend.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,14 +29,22 @@ public class Review {
     private User user;
     @Setter
     private long gameId;
+    @Setter
+    private String gameTitle;
 
 
-    public Review(String content, int rating, LocalDate date, User user, long gameId) {
+    public Review(String content, int rating, LocalDate date, User user, long gameId, String gameTitle) {
         this.content = content;
         this.rating = rating;
         this.date = date;
         this.user = user;
         this.gameId = gameId;
+        this.gameTitle = gameTitle;
+    }
+
+    @JsonProperty("username")
+    public String getUserName() {
+        return user != null ? user.getUserName() : null;
     }
 
     @Override
@@ -46,6 +55,7 @@ public class Review {
                 ", rating=" + rating +
                 ", date=" + date +
                 ", gameId=" + gameId +
+                ", username=" + getUserName() +
                 '}';
     }
 }

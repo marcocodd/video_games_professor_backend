@@ -19,10 +19,10 @@ public class ReviewController {
 
     @PostMapping
     public Review save(@AuthenticationPrincipal User currentUser, @RequestBody @Validated NewReviewDTO newReview) {
-        return reviewService.save(newReview, currentUser, newReview.gameId());
+        return reviewService.save(newReview, currentUser, newReview.gameId(), newReview.gameTitle());
     }
 
-    @GetMapping("/games/{gameId}")
+    @GetMapping("/{gameId}")
     public List<Review> getReviewsByGameId(@PathVariable long gameId) {
         return reviewService.getReviewsByGameId(gameId);
     }
@@ -31,4 +31,5 @@ public class ReviewController {
     public List<Review> getLast10Reviews() {
         return reviewService.getLast10Reviews();
     }
+
 }
