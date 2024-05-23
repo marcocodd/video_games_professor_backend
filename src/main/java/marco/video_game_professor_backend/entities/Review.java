@@ -47,6 +47,11 @@ public class Review {
         return user != null ? user.getUserName() : null;
     }
 
+    @JsonProperty("avatarUrl")
+    public String getAvatarUrl() {
+        return user != null ? user.getAvatar() : null;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
@@ -56,6 +61,7 @@ public class Review {
                 ", date=" + date +
                 ", gameId=" + gameId +
                 ", username=" + getUserName() +
+                ", avatarUrl=" + getAvatarUrl() +
                 '}';
     }
 }
