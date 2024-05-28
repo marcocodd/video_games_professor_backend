@@ -32,4 +32,9 @@ public class ReviewController {
         return reviewService.getLast10Reviews();
     }
 
+    @GetMapping("/reviews/{userId}")
+    public List<Review> getReviewsByUserId(@PathVariable("userId") @AuthenticationPrincipal User currentUser) {
+        return reviewService.getReviewsByGameId(currentUser.getId());
+    }
+
 }

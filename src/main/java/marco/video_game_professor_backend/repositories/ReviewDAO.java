@@ -12,6 +12,8 @@ import java.util.List;
 public interface ReviewDAO extends JpaRepository<Review, Long> {
     List<Review> findByGameId(long gameId);
 
+    List<Review> getReviewsByUserId(Long userId);
+
     @Query("SELECT r FROM Review r ORDER BY r.date DESC")
     List<Review> findLast10ByOrderByDateDesc();
 

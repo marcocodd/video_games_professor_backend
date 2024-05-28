@@ -45,13 +45,13 @@ public class Config {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(Arrays.asList("http://localhost:5173", "https://mywonderfulfrontend.com"));
+        config.setAllowedOrigins(Arrays.asList("http://localhost:5173", "https://video-games-professor-capstone.vercel.app/"));
         config.setAllowedMethods(Arrays.asList("*"));
         config.setAllowedHeaders(Arrays.asList("*"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
-       
+
 
         return source;
 
